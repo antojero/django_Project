@@ -1,0 +1,21 @@
+<header class="p-3 bg-dark text-white">
+    <div class="row">
+        <div class="col">
+           <a class="text-light text-decoration-none" href="/blog"> <h3>Blog</h3> </a>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center gap-3">
+                {% if user.is_authenticated %}
+                  <a class="text-light text-decoration-none" href="/blog">Home</a>
+                  <a class="text-light text-decoration-none" href="about">About</a>
+                  <a class="text-light text-decoration-none" href="contact">Contact</a>
+                  <a class="text-light text-decoration-none" href="profile">Profile</a>
+                  <a class="text-light text-decoration-none" href="logout">Logout</a>
+                {% else %}
+                  <a class="text-light text-decoration-none" href="login">Login</a>
+                  <a class="text-light text-decoration-none" href="register">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>

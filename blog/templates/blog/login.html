@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container-fluid" style="margin-top:100px;margin-left:570px">
+    <div class="col-md-offset-4 col-md-4" style="margin-left:-100px">
+        <h2 class="text-primary page-header text-center">Login Form</h2>
+    </div>
+    <div class="col-md-offset-4 col-md-4 well" style="margin-top:50px">
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary">Login</button>
+            <div style="margin-top:10px">
+            <a href="{% url 'blog:register' %}">Register Here</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

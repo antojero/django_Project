@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top:150px;margin-left:500px">
+    <div class="col-md-offset-4 col-md-4">
+       <table class="table table-bordered">
+        <tr>
+            <h3 style="margin-bottom:20px;margin-left:150px">User Details</h3>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{user.email}}</td>
+        </tr>
+       </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container-fluid ">
+    {% if user.is_authenticated %}
+    <h2> Welcome:<span style="color:red"> {{user.username}}</span></h2>
+    {% else %}
+    <h2> Welcome:<span style="color:red"> Guest</span></h2>
+    {% endif %}
+        <div class="row">
+            <h2 >latest blog</h2>
+        </div>
+        <div class="row m-3">
+            {% for post in posts %}
+            <div class="col-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img style="width:300, height:300" src="{{post.img_url}}" class="img-fluid" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <h5 class="card-title">{{post.title}}</h5>
+                                <p class="card-text">{{post.content|truncatechars:30}}</p>
+                                <div class="d-flex justify-content-between">
+                                     <a href="{% url 'blog:detail' slug=post.slug %}">Read More</a>
+                                    <a class="text-decoration-none text-dark fw-bold" href="#">{{post.category.name}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+             <div class="col-12 my-3">
+                {% if posts.has_other_pages %}
+                   <nav aria-label="Page navigation">
+                       <ul class="pagination">
+                           {% if posts.has_previous %}
+                           <li class="page-item">
+                               <a class="page-link" href="?page=1" aria-label="First">
+                                   <span aria-hidden="true">&laquo; first</span>
+                               </a>
+                            </li>
+                            <li class="page-item">
+                               <a class="page-link" href="?page={{posts.previous_page_number}}" aria-label="Previous">
+                                   <span aria-hidden="true">previous</span>
+                               </a>
+                            </li>
+                            {% endif %}
+                        <li class="page-item"><span class="page-link">Page {{posts.number}} of {{posts.paginator.num_pages}}</span></li>
+                        {%if posts.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{posts.next_page_number}}" aria-label="Next">
+                                <span aria-hidden="true">next</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{posts.paginator.num_pages}}" aria-label="Last">
+                                <span aria-hidden="true">last &raquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                   </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+            
+            
+   {% endblock %}
